@@ -11,6 +11,9 @@
 @class ASUStudent;
 @interface ASUQuizListViewController : UITableViewController
 
+@property (nonatomic, strong) NSMutableArray *_courses;
 @property (nonatomic, strong) ASUStudent* currentStudent;
+
+- (instancetype)initWithType:(NSString *)type;
 
 @end

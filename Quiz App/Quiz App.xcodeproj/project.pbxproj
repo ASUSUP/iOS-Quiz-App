@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2405725E198DC17700D32C5B /* ASUGetCoursesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2405725D198DC17700D32C5B /* ASUGetCoursesManager.m */; };
+		24057261198DC6FB00D32C5B /* ASUCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 24057260198DC6FB00D32C5B /* ASUCourse.m */; };
+		24288756198D56DA00A38E4A /* ASULoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24288755198D56DA00A38E4A /* ASULoginManager.m */; };
+		24288759198D939A00A38E4A /* ASUCommunicationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 24288758198D939A00A38E4A /* ASUCommunicationData.m */; };
 		24D125611974AC9A00A93CFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D125601974AC9A00A93CFF /* Foundation.framework */; };
 		24D125631974AC9A00A93CFF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D125621974AC9A00A93CFF /* CoreGraphics.framework */; };
 		24D125651974AC9A00A93CFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D125641974AC9A00A93CFF /* UIKit.framework */; };
@@ -25,6 +29,7 @@
 		24D125B71974D09500A93CFF /* ASUQuizDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D125B61974D09500A93CFF /* ASUQuizDB.m */; };
 		24D125BB1974D3E100A93CFF /* ASULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D125B91974D3E100A93CFF /* ASULoginViewController.m */; };
 		24D125BC1974D3E100A93CFF /* ASULoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24D125BA1974D3E100A93CFF /* ASULoginViewController.xib */; };
+		24D52D37198E2FF80087D6D6 /* ASUGetQuizManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 24D52D36198E2FF80087D6D6 /* ASUGetQuizManager.m */; };
 		24EF47431974DB2D00F88D2B /* ASUQuizListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF47421974DB2D00F88D2B /* ASUQuizListViewController.m */; };
 		24EF47471974E3E900F88D2B /* ASUQuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EF47451974E3E900F88D2B /* ASUQuizViewController.m */; };
 		24EF47481974E3E900F88D2B /* ASUQuizViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24EF47461974E3E900F88D2B /* ASUQuizViewController.xib */; };
@@ -43,6 +48,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2405725C198DC17700D32C5B /* ASUGetCoursesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASUGetCoursesManager.h; sourceTree = "<group>"; };
+		2405725D198DC17700D32C5B /* ASUGetCoursesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASUGetCoursesManager.m; sourceTree = "<group>"; };
+		2405725F198DC6FB00D32C5B /* ASUCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASUCourse.h; sourceTree = "<group>"; };
+		24057260198DC6FB00D32C5B /* ASUCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASUCourse.m; sourceTree = "<group>"; };
+		24288753198D55C200A38E4A /* ASUCommunicationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASUCommunicationDelegate.h; sourceTree = "<group>"; };
+		24288754198D56DA00A38E4A /* ASULoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASULoginManager.h; sourceTree = "<group>"; };
+		24288755198D56DA00A38E4A /* ASULoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASULoginManager.m; sourceTree = "<group>"; };
+		24288757198D939A00A38E4A /* ASUCommunicationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASUCommunicationData.h; sourceTree = "<group>"; };
+		24288758198D939A00A38E4A /* ASUCommunicationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASUCommunicationData.m; sourceTree = "<group>"; };
 		24D1255D1974AC9A00A93CFF /* Quiz App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quiz App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D125601974AC9A00A93CFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24D125621974AC9A00A93CFF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -71,6 +85,8 @@
 		24D125B81974D3E100A93CFF /* ASULoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASULoginViewController.h; sourceTree = "<group>"; };
 		24D125B91974D3E100A93CFF /* ASULoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASULoginViewController.m; sourceTree = "<group>"; };
 		24D125BA1974D3E100A93CFF /* ASULoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASULoginViewController.xib; sourceTree = "<group>"; };
+		24D52D35198E2FF80087D6D6 /* ASUGetQuizManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASUGetQuizManager.h; sourceTree = "<group>"; };
+		24D52D36198E2FF80087D6D6 /* ASUGetQuizManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASUGetQuizManager.m; sourceTree = "<group>"; };
 		24EF47411974DB2D00F88D2B /* ASUQuizListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASUQuizListViewController.h; sourceTree = "<group>"; };
 		24EF47421974DB2D00F88D2B /* ASUQuizListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASUQuizListViewController.m; sourceTree = "<group>"; };
 		24EF47441974E3E900F88D2B /* ASUQuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASUQuizViewController.h; sourceTree = "<group>"; };
@@ -140,27 +156,38 @@
 			children = (
 				24D1256F1974AC9A00A93CFF /* ASUAppDelegate.h */,
 				24D125701974AC9A00A93CFF /* ASUAppDelegate.m */,
+				24288753198D55C200A38E4A /* ASUCommunicationDelegate.h */,
+				24288757198D939A00A38E4A /* ASUCommunicationData.h */,
+				24288758198D939A00A38E4A /* ASUCommunicationData.m */,
+				24D125B81974D3E100A93CFF /* ASULoginViewController.h */,
+				24D125B91974D3E100A93CFF /* ASULoginViewController.m */,
+				24D125BA1974D3E100A93CFF /* ASULoginViewController.xib */,
+				24288754198D56DA00A38E4A /* ASULoginManager.h */,
+				24288755198D56DA00A38E4A /* ASULoginManager.m */,
+				24EF47411974DB2D00F88D2B /* ASUQuizListViewController.h */,
+				24EF47421974DB2D00F88D2B /* ASUQuizListViewController.m */,
+				24D52D35198E2FF80087D6D6 /* ASUGetQuizManager.h */,
+				24D52D36198E2FF80087D6D6 /* ASUGetQuizManager.m */,
+				2405725C198DC17700D32C5B /* ASUGetCoursesManager.h */,
+				2405725D198DC17700D32C5B /* ASUGetCoursesManager.m */,
+				2405725F198DC6FB00D32C5B /* ASUCourse.h */,
+				24057260198DC6FB00D32C5B /* ASUCourse.m */,
+				24EF47441974E3E900F88D2B /* ASUQuizViewController.h */,
+				24EF47451974E3E900F88D2B /* ASUQuizViewController.m */,
+				24EF47461974E3E900F88D2B /* ASUQuizViewController.xib */,
+				24EF47491974F94800F88D2B /* ASUScoreViewController.h */,
+				24EF474A1974F94800F88D2B /* ASUScoreViewController.m */,
+				24EF474B1974F94800F88D2B /* ASUScoreViewController.xib */,
 				24D1258F1974ACAE00A93CFF /* ASUStudent.h */,
 				24D125901974ACAE00A93CFF /* ASUStudent.m */,
+				24D125B21974C7DF00A93CFF /* ASUStudentDB.h */,
+				24D125B31974C7DF00A93CFF /* ASUStudentDB.m */,
 				24D125921974AF4C00A93CFF /* ASUQuestion.h */,
 				24D125931974AF4C00A93CFF /* ASUQuestion.m */,
 				24D125951974B1E600A93CFF /* ASUQuiz.h */,
 				24D125961974B1E600A93CFF /* ASUQuiz.m */,
 				24D125B51974D09500A93CFF /* ASUQuizDB.h */,
 				24D125B61974D09500A93CFF /* ASUQuizDB.m */,
-				24EF47491974F94800F88D2B /* ASUScoreViewController.h */,
-				24EF474A1974F94800F88D2B /* ASUScoreViewController.m */,
-				24EF474B1974F94800F88D2B /* ASUScoreViewController.xib */,
-				24D125B21974C7DF00A93CFF /* ASUStudentDB.h */,
-				24D125B31974C7DF00A93CFF /* ASUStudentDB.m */,
-				24D125B81974D3E100A93CFF /* ASULoginViewController.h */,
-				24D125B91974D3E100A93CFF /* ASULoginViewController.m */,
-				24D125BA1974D3E100A93CFF /* ASULoginViewController.xib */,
-				24EF47411974DB2D00F88D2B /* ASUQuizListViewController.h */,
-				24EF47421974DB2D00F88D2B /* ASUQuizListViewController.m */,
-				24EF47441974E3E900F88D2B /* ASUQuizViewController.h */,
-				24EF47451974E3E900F88D2B /* ASUQuizViewController.m */,
-				24EF47461974E3E900F88D2B /* ASUQuizViewController.xib */,
 				24D125671974AC9A00A93CFF /* Supporting Files */,
 			);
 			path = "Quiz App";
@@ -298,10 +325,15 @@
 				24D125711974AC9A00A93CFF /* ASUAppDelegate.m in Sources */,
 				24D125941974AF4C00A93CFF /* ASUQuestion.m in Sources */,
 				24D125B41974C7DF00A93CFF /* ASUStudentDB.m in Sources */,
+				2405725E198DC17700D32C5B /* ASUGetCoursesManager.m in Sources */,
+				24288759198D939A00A38E4A /* ASUCommunicationData.m in Sources */,
 				24D125BB1974D3E100A93CFF /* ASULoginViewController.m in Sources */,
 				24EF474C1974F94800F88D2B /* ASUScoreViewController.m in Sources */,
 				24D125B71974D09500A93CFF /* ASUQuizDB.m in Sources */,
+				24057261198DC6FB00D32C5B /* ASUCourse.m in Sources */,
+				24D52D37198E2FF80087D6D6 /* ASUGetQuizManager.m in Sources */,
 				24D125911974ACAE00A93CFF /* ASUStudent.m in Sources */,
+				24288756198D56DA00A38E4A /* ASULoginManager.m in Sources */,
 				24D1256D1974AC9A00A93CFF /* main.m in Sources */,
 				24EF47471974E3E900F88D2B /* ASUQuizViewController.m in Sources */,
 			);
