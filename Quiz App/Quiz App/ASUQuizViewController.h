@@ -14,14 +14,15 @@
 @interface ASUQuizViewController : UIViewController
 {
 	ASUStudent *currentStudent;
+	NSNumber *quiz_ID;
 	int score;
 	ASUQuiz *currentQuiz;
 	ASUQuestion *currentQuestion;
 	unsigned int index;
 }
 
--(instancetype) initWithStudent:(ASUStudent *)student
-		     takingQuiz:(ASUQuiz *)quiz;
+
+-(instancetype) initWithQuizes:(NSNumber *)QuizID :(NSString *) Quizname;
 
 -(void) loadData;
 @end

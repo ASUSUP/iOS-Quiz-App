@@ -11,18 +11,22 @@
 @interface ASUQuestion : NSObject
 {
 	NSString *question;
+	NSNumber *question_id;
 	NSArray *answers;
+	NSArray *answers_id;
 	NSNumber *indexOfCorrectAnswer;
 }
 
 -(instancetype)initWithQuestion:(NSString *)ques
+		     questionID:(NSNumber *)que_id
 		     andanswers:(NSArray *)ans
-		withRightAnswer:(NSNumber *)index;
-
+		     answers_id:(NSArray *)ans_id;
 
 -(NSString *)question;
+-(NSNumber *)question_id;
 -(NSArray *)answers;
 -(NSNumber *)indexOfCorrectAnswer;
+-(NSArray *)answers_id;
 
 -(BOOL)isCorrectAnswerAtIndex:(NSNumber *)index;
 

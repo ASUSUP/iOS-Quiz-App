@@ -1,5 +1,5 @@
 //
-//  ASUGetQuizManager.h
+//  ASUGetScoreManager.h
 //  Quiz App
 //
 //  Created by Yousef Hamza on 8/3/14.
@@ -10,10 +10,11 @@
 
 @protocol ASUCommunicationDelegate;
 
-@interface ASUGetQuizManager : NSObject
+@interface ASUGetScoreManager : NSObject
 
 @property (weak, nonatomic) id<ASUCommunicationDelegate> delegate;
 
--(void)GetQuizes:(NSNumber *)forCourseID;
+-(void)getScoreforQuizID:(NSNumber *)quiz_id
+	      andanswers:(NSDictionary *)answers;
 
 @end

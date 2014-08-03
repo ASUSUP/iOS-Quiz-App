@@ -11,6 +11,7 @@
 #import "ASUScoreViewController.h"
 #import "ASUCommunicationDelegate.h"
 #import "ASUGetCoursesManager.h"
+#import "ASUGetQuizManager.h"
 #import "ASUQuizDB.h"
 #import "ASUStudent.h"
 #import "ASUQuiz.h"
@@ -19,6 +20,7 @@
 @interface ASUQuizListViewController () <ASUCommunicationDelegate> {
 	NSString *_type;
 	NSArray *_courses;
+	NSArray *_coursesNames;
 	NSMutableArray *_quizes;
 }
 
@@ -40,6 +42,21 @@
 		manager.delegate = self;
 		[manager getCourses];
 	}
+	return self;
+}
+
+-(instancetype)initWithType:(NSString *)type
+			   :(NSNumber *)Course_ID{
+	self = [super initWithStyle:UITableViewStylePlain];
+	if (self) {
+		_type = type;
+		UINavigationItem *nvitem = self.navigationItem;
+		nvitem.title = @"loading..";
+		nvitem.hidesBackButton= YES;
+	}
+	ASUGetQuizManager *manager = [[ASUGetQuizManager alloc] init];
+	manager.delegate = self;
+	[manager GetQuizes:Course_ID];
 	return self;
 }
 -(instancetype) initWithStyle:(UITableViewStyle)style{
@@ -66,44 +83,67 @@
 	UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"forIndexPath:indexPath];
 	NSInteger n = indexPath.row;
 	NSLog(@"%@",_courses);
-	cell.textLabel.text = [_courses[n] name];
+	if ([_type isEqualToString:@"Courses"]) {
+		cell.textLabel.text = [_coursesNames[n] name];
+	} else {
+		cell.textLabel.text = [_quizes[n] name];
+	}
+	
 	return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	ASUQuiz *quiz = [[[ASUQuizDB allQuizes] Quizes] objectAtIndex:indexPath.row];
-	
-	NSNumber *prevScore = [self.currentStudent hasTookthisQuizBefore:quiz.quizName];
-	
-	
-	NSLog(@"button pressed row = %d and prev score = %d",indexPath.row, [[quiz Questions] count] );
-	
-	if ([prevScore isEqualToNumber:[NSNumber numberWithInt:-1]]) {
-		ASUQuizViewController *aqvc = [[ASUQuizViewController alloc] initWithStudent:self.currentStudent takingQuiz:quiz];
-		[self.navigationController pushViewController:aqvc animated:YES];
-	}else {
-		ASUScoreViewController *asvc = [[ASUScoreViewController alloc] initWithScore:prevScore from:[NSNumber numberWithInt:[quiz.Questions count]]
-										 forQuizName:quiz.quizName];
-		[self.navigationController pushViewController:asvc animated:YES];
+	if ([_type isEqualToString:@"Courses"]) {
+		ASUQuizListViewController *nextView = [[ASUQuizListViewController alloc] initWithType:@"Quizes" :[_courses[indexPath.row] course_id]];
+		[self.navigationController pushViewController:nextView animated:YES];
 	}
+//	ASUQuiz *quiz = [[[ASUQuizDB allQuizes] Quizes] objectAtIndex:indexPath.row];
+//	
+//	NSNumber *prevScore = [self.currentStudent hasTookthisQuizBefore:quiz.quizName];
+//	
+//	
+//	NSLog(@"button pressed row = %d and prev score = %d",indexPath.row, [[quiz Questions] count] );
+//	
+//	if ([prevScore isEqualToNumber:[NSNumber numberWithInt:-1]]) {
+//		ASUQuizViewController *aqvc = [[ASUQuizViewController alloc] initWithStudent:self.currentStudent takingQuiz:quiz];
+//		[self.navigationController pushViewController:aqvc animated:YES];
+//	}else {
+//		ASUScoreViewController *asvc = [[ASUScoreViewController alloc] initWithScore:prevScore from:[NSNumber numberWithInt:[quiz.Questions count]]
+//										 forQuizName:quiz.quizName];
+//		[self.navigationController pushViewController:asvc animated:YES];
+//	}
 }
 
 -(void)receivedDataJSON:(NSData *)objectNotation {
-	NSError *error =nil;
-	NSMutableArray *temp = [[NSMutableArray alloc] init];
-	NSArray *parsedObject = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&error];
-	NSLog(@"%@", parsedObject);
-	for (NSDictionary *course in parsedObject) {
-		ASUCourse *newcourse = [[ASUCourse alloc] init];
-		newcourse.name = (NSString *)[course valueForKey:@"name"];
-		newcourse.code = (NSString *)[course valueForKey:@"code"];
-		newcourse.course_id = (NSString *)[course valueForKey:@"course_id"];
-		newcourse.quiz_count =(NSNumber *)[course valueForKey:@"quiz_count"];
-		[temp addObject:newcourse];
-		NSLog(@"now: %@", temp);
+	if ([_type isEqualToString:@"Courses"]) {
+		NSError *error =nil;
+		NSMutableArray *temp = [[NSMutableArray alloc] init];
+		NSArray *parsedObject = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&error];
+		NSLog(@"%@", parsedObject);
+		for (NSDictionary *course in parsedObject) {
+			ASUCourse *newcourse = [[ASUCourse alloc] init];
+			newcourse.name = (NSString *)[course valueForKey:@"name"];
+			newcourse.code = (NSString *)[course valueForKey:@"code"];
+			newcourse.course_id = (NSNumber *)[course valueForKey:@"course_id"];
+			newcourse.quiz_count =(NSNumber *)[course valueForKey:@"quiz_count"];
+			[temp addObject:newcourse];
+			NSLog(@"now: %@", temp);
+		}
+		_courses = temp;
+		NSLog(@"Courses:\n%@", _courses);
+		self.navigationItem.title = @"Courses";
+	} else {
+		NSError *error = nil;
+		_quizes = [[NSMutableArray alloc] init];
+		NSArray *parseedObject = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&error];
+		NSLog(@"ParsedObject: %@", parseedObject);
+		
+		for (NSDictionary *quiz in parseedObject) {
+			NSString *quizname = (NSString *)[parseedObject valueForKey:@"name"];
+			[_quizes addObject:quizname];
+		}
+		NSLog(@"quizes names: %@", _quizes);
+		self.navigationItem.title = @"Quizes";
 	}
-	_courses = temp;
-	NSLog(@"Courses:\n%@", _courses);
-	self.navigationItem.title = @"Courses";
 	[self.tableView reloadData];
 }
 

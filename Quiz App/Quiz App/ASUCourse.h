@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) NSString* name;
 @property (weak, nonatomic) NSString* code;
-@property (weak, nonatomic) NSString* course_id;
+@property (weak, nonatomic) NSNumber* course_id;
 @property (weak, nonatomic) NSNumber* quiz_count;
 
 @end

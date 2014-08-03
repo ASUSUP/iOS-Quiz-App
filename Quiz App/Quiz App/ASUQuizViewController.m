@@ -7,11 +7,17 @@
 //
 
 #import "ASUQuizViewController.h"
+#import "ASUCommunicationDelegate.h"
+#import "ASUGetQuestionsManager.h"
 #import "ASUStudent.h"
 #import "ASUQuestion.h"
 #import "ASUQuiz.h"
 
-@interface ASUQuizViewController ()
+@interface ASUQuizViewController () <ASUCommunicationDelegate> {
+	NSMutableArray *_questions;
+	NSMutableDictionary *_answers;
+}
+
 @property (weak, nonatomic) IBOutlet UILabel *QuestionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *AnswerALabel;
 @property (weak, nonatomic) IBOutlet UILabel *AnswerBLabel;
@@ -24,20 +30,51 @@
 
 @end
 
+
+
 @implementation ASUQuizViewController
 
--(instancetype) initWithStudent:(ASUStudent *)student
-		     takingQuiz:(ASUQuiz *)quiz {
+-(instancetype) initWithQuizes:(NSNumber *)QuizID :(NSString *) Quizname {
 	self = [super init];
 	if (self) {
-		currentQuiz =quiz;
-		currentStudent = student;
+		quiz_ID = QuizID;
 		index = -1;
-		score =0;
-		self.navigationItem.title = currentQuiz.quizName;
+		self.navigationItem.title = @"loading";
 		self.navigationItem.hidesBackButton=YES;
+		ASUGetQuestionsManager *manager = [[ASUGetQuestionsManager alloc] init];
+		manager.delegate = self;
+		[manager getQuestions:QuizID];
 	}
+	self.navigationItem.title = Quizname;
 	return self;
+}
+
+
+-(void)receivedDataJSON:(NSData *)objectNotation {
+	NSError *error = nil;
+	NSArray *parsedObject = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&error];
+	NSLog(@"parsed Questions: %@", parsedObject);
+	
+	for (NSDictionary *Questions in parsedObject) {
+		NSString *Question_name = (NSString *)[Questions valueForKey:@"question_string"];
+		NSNumber *Question_id = (NSNumber *) [Question_name valueForKey:@"question_id"];
+		_answers[Question_id] = [NSNumber numberWithInt:-1];
+		NSMutableArray *choices_string = [[NSMutableArray alloc] init];
+		NSMutableArray *choices_id = [[NSMutableArray alloc] init];
+		NSArray *choices = (NSArray *)[Questions valueForKey:@"choices"];
+		for (NSDictionary *choicesdic in choices) {
+			NSString *choice_string = (NSString *)[choicesdic valueForKey:@"choice_string"];
+			NSNumber *choice_id = (NSNumber *) [choicesdic valueForKey:@"id"];
+			[choices_string addObject:choice_string];
+			[choices_id addObject:choice_id];
+		}
+		ASUQuestion *newQuestion = [[ASUQuestion alloc] initWithQuestion:Question_name questionID:Question_id andanswers:choices_string answers_id:choices_id];
+		[_questions addObject:newQuestion];
+	}
+}
+
+-(void)fetchingGroupsFailedWithError:(NSError *)error{
+	
 }
 
 -(void) viewDidLoad{
@@ -48,7 +85,9 @@
 
 -(void)loadData{
 	index++;
-	if (index>=[[currentQuiz Questions] count]) {
+	if (index>=[_questions count]) {
+		
+		
 		self.QuestionLabel.text = [NSString stringWithFormat:@"Your score is %d/%d"
 					    ,score,[[currentQuiz Questions] count]];
 		self.AnswerALabel.hidden=YES;
@@ -65,7 +104,7 @@
 		[currentStudent tookQuizWithName:currentQuiz.quizName andScore:[NSNumber numberWithInt:score]];
 		return;
 	}
-	currentQuestion = [[currentQuiz Questions] objectAtIndex:index];
+	currentQuestion = [_questions objectAtIndex:index];
 	self.QuestionLabel.text= [currentQuestion question];
 	self.AnswerALabel.text = [[currentQuestion answers] objectAtIndex:0];
 	self.AnswerBLabel.text = [[currentQuestion answers] objectAtIndex:1];
@@ -73,33 +112,25 @@
 	self.AnswerDLabel.text = [[currentQuestion answers] objectAtIndex:3];
 }
 - (IBAction)SubmitA:(id)sender {
-	if ([currentQuestion.indexOfCorrectAnswer isEqualToNumber:[NSNumber numberWithInt:0]]) {
-		score++;
-	}
+	[_answers setObject:[NSNumber numberWithInt:0] forKey:currentQuestion.question_id ];
 	[self loadData];
 	NSLog(@"%d",score);
 }
 
 - (IBAction)SubmitB:(id)sender {
-	if ([currentQuestion.indexOfCorrectAnswer isEqualToNumber:[NSNumber numberWithInt:1]]) {
-		score++;
-	}
+	[_answers setObject:[NSNumber numberWithInt:1] forKey:currentQuestion.question_id ];
 	[self loadData];
 	NSLog(@"%d",score);
 }
 
 - (IBAction)SubmitC:(id)sender {
-	if ([currentQuestion.indexOfCorrectAnswer isEqualToNumber:[NSNumber numberWithInt:2]]) {
-		score++;
-	}
+	[_answers setObject:[NSNumber numberWithInt:2] forKey:currentQuestion.question_id ];
 	[self loadData];
 	NSLog(@"%d",score);
 }
 
 - (IBAction)SubmitD:(id)sender {
-	if ([currentQuestion.indexOfCorrectAnswer isEqualToNumber:[NSNumber numberWithInt:3]]) {
-		score++;
-	}
+	[_answers setObject:[NSNumber numberWithInt:3] forKey:currentQuestion.question_id ];
 	[self loadData];
 	NSLog(@"%d",score);
 }

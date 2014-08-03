@@ -12,13 +12,15 @@
 
 
 -(instancetype)initWithQuestion:(NSString *)ques
+		     questionID:(NSNumber *)ques_id
 		     andanswers:(NSArray *)ans
-		withRightAnswer:(NSNumber *)index {
+		     answers_id:(NSArray *)ans_id{
 	self = [super init];
 	if (self) {
 		question = ques;
+		question_id = ques_id;
 		answers = ans;
-		indexOfCorrectAnswer = index;
+		answers_id  = ans_id;
 	}
 	return self;
 }
@@ -26,9 +28,15 @@
 -(NSString *)question {
 	return  question;
 }
+-(NSNumber *)question_id {
+	return  question_id;
+}
 
 -(NSArray *)answers {
 	return  answers;
+}
+-(NSArray *)answers_id{
+	return answers_id;
 }
 -(NSNumber *)indexOfCorrectAnswer {
 	return indexOfCorrectAnswer;
