@@ -16,7 +16,7 @@
 	NSString *URL_STRING = [NSString stringWithFormat:@"http://%@/Service/index.php/courses?session_id=%@", [ASUCommunicationData getIP], [ASUCommunicationData getsessionID:@"GET"]];
 	NSURL *URL = [NSURL URLWithString:URL_STRING];
 	
-	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:URL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:URL] queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
 		if (error) {
 			[self.delegate fetchingGroupsFailedWithError:error];
 		} else {

@@ -10,9 +10,9 @@
 
 @interface ASUCourse : NSObject
 
-@property (weak, nonatomic) NSString* name;
-@property (weak, nonatomic) NSString* code;
-@property (weak, nonatomic) NSNumber* course_id;
-@property (weak, nonatomic) NSNumber* quiz_count;
+@property (strong, nonatomic) NSString* name;
+@property (strong, nonatomic) NSString* code;
+@property (strong, nonatomic) NSNumber* course_id;
+@property (strong, nonatomic) NSNumber* quiz_count;
 
 @end

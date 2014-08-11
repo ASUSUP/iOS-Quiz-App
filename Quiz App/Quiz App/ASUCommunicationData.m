@@ -11,7 +11,7 @@
 @implementation ASUCommunicationData
 
 +(NSString *)getIP{
-	return @"197.39.249.239";
+	return @"197.39.242.151";
 }
 +(NSString *)getsessionID:(NSString *)temp{
 	static NSString *session_id = nil;

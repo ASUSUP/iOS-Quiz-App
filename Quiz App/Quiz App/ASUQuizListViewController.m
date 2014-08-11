@@ -82,9 +82,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell  = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"forIndexPath:indexPath];
 	NSInteger n = indexPath.row;
-	NSLog(@"%@",_courses);
 	if ([_type isEqualToString:@"Courses"]) {
-		cell.textLabel.text = [_coursesNames[n] name];
+		NSLog(@"getting to print courses :%@",[[_courses objectAtIndex:indexPath.row] name]);
+		cell.textLabel.text = [[_courses objectAtIndex:indexPath.row] name];
 	} else {
 		cell.textLabel.text = [_quizes[n] name];
 	}
